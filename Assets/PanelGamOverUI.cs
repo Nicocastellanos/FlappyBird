@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ControladorHudUI : MonoBehaviour
+public class PanelGamOverUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textoPuntos;
 
-    public void TextoPuntos(int nuevoPuntaje)
+    private void OnEnable()
+    {
+        ActualizarPuntaje(ControladorPuntaje.Instancia.ObtenerPuntaje());
+    }
+
+    public void ActualizarPuntaje(int nuevoPuntaje)
     {
         textoPuntos.text = nuevoPuntaje.ToString();
     }

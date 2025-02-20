@@ -8,13 +8,16 @@ using UnityEngine;
 public class Chunk : MonoBehaviour
 {
     [SerializeField] List<Transform> pivotes = new List<Transform>();
-    List<GameObject> ObstaculosInstanciados = new List<GameObject>();
+    [SerializeField] List<GameObject> ObstaculosInstanciados = new List<GameObject>();
+    [SerializeField] bool instanciarAlInicio;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        GenerarObstaculos();
+        if (instanciarAlInicio == true)
+        {
+           GenerarObstaculos();
+        }   
     }
 
     public void GenerarObstaculos()

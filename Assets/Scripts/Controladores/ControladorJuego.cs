@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControladorJuego : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ControladorJuego : MonoBehaviour
     public EventosJuegoDelegado JuegoPausadoEvento;
     public EventosJuegoDelegado JuegoReanudadoEvento;
     public EventosJuegoDelegado JuegoFinalizadoEvento;
+    public EventosJuegoDelegado JuegoReiniciadoEvento;
 
     public void Awake()
     {
@@ -43,6 +45,11 @@ public class ControladorJuego : MonoBehaviour
     {
         Time.timeScale = 1f;
         JuegoReanudadoEvento?.Invoke();
+    }
+    public void ReiniciarJuego()
+    {
+        JuegoReiniciadoEvento?.Invoke();
+        SceneManager.LoadScene(0);
     }
     public void CerrarJuego()
     {

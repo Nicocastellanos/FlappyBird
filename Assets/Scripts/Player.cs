@@ -17,4 +17,11 @@ public class Player : MonoBehaviour
     {
         rigid.velocity = new Vector2(0, force);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        {
+            ControladorJuego.Instancia.FinalizarJuego();
+        }
+    }
 }
