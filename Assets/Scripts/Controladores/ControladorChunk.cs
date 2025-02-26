@@ -21,7 +21,7 @@ public class ControladorChunk : MonoBehaviour
         {
             chunks[i].transform.Translate(Vector3.left * velocity * Time.deltaTime, Space.World);
 
-            if (chunks[i].transform.position.x <= -7)
+            if (chunks[i].transform.position.x <= -10)
             {
                 chunks[i].transform.position = lastChunk.position + (Vector3.right * 7);
                 lastChunk = chunks[i].transform;
