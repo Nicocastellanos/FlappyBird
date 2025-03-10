@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
     [SerializeField] float force = 5f;
+    public ParticleSystem jumpParticles;
+    public GameObject explosionEffect;
+
 
     void Start()
     {
@@ -17,7 +20,12 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         rigid.velocity = new Vector2(0, force);
-        anim.SetTrigger("Jump"); 
+        anim.SetTrigger("Jump");
+
+        if (jumpParticles != null)
+        {
+            jumpParticles.Play();
+        }
     }
 
     private void Update()
@@ -32,6 +40,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Respawn"))
         {
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            gameObject.SetActive(false); 
             ControladorJuego.Instancia.FinalizarJuego();
         }
     }
