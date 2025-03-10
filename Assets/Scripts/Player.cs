@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
     [SerializeField] float force = 5f;
+    [SerializeField] ParticleSystem jumpParticle;
 
     void Start()
     {
@@ -17,7 +18,10 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         rigid.velocity = new Vector2(0, force);
-        anim.SetTrigger("Jump"); 
+        if (jumpParticle != null)
+        {
+            jumpParticle.Play();
+        } 
     }
 
     private void Update()
