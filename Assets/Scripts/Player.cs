@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
     [SerializeField] float force = 5f;
-    [SerializeField] ParticleSystem jumpParticle;
+    public ParticleSystem jumpParticle;
+    public GameObject explosionEffect;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         rigid.velocity = new Vector2(0, force);
+
         if (jumpParticle != null)
         {
             jumpParticle.Play();
@@ -34,8 +36,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Respawn"))
+        if (collision.gameObject.CompareTag("Respawn")) 
         {
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject); 
             ControladorJuego.Instancia.FinalizarJuego();
         }
     }
